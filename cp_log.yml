@@ -1,0 +1,38 @@
+---
+- name: Configure Check Point to send logs to QRadar
+  hosts: all
+
+  tasks:
+    - name: Login to Check Point Firewall, get SID
+      uri:
+        url: "https://{{ hostvars[inventory_hostname]['ansible_host'] }}/web_api/login"
+        method: POST
+        body:
+          user: "{{ hostvars[inventory_hostname]['ansible_user'] }}"
+          password: "{{ hostvars[inventory_hostname]['ansible_password'] }}"
+        body_format: json
+        validate_certs: no
+        return_content: yes
+      register: login_data
+
+    - name: List all objects registered to Check Point
+      uri:
+        url: "https://{{ hostvars[inventory_hostname]['ansible_host'] }}/web_api/show-gateways-and-servers"
+        validate_certs: no
+        method: POST
+        headers:
+          Content-Type: application/json
+          X-chkp-sid: "{{ login_data.json.sid }}"
+        body_format: json
+        body: >
+          {}
+      register: object_data
+
+    - name: Import tasks from log_manager role
+      include_role:
+        name: ansible_security.log_manager
+        tasks_from: forward_logs_to_syslog
+      vars:
+        syslog_server: "{{ hostvars['qradar']['private_ip'] }}"
+        checkpoint_server_name: "{{ object_data.json.objects | selectattr('type', 'match', 'CpmiHostCkp')|map(attribute='name')|join(',') }}"
+        firewall_provider: checkpoint

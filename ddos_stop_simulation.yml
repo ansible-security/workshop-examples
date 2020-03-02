@@ -1,0 +1,17 @@
+---
+- name: Kill simulated attack
+  hosts: all
+
+  tasks:
+  - name: Getting process IDs of the simulated attack
+    pids:
+      name: watch
+    register: pids
+
+  - name: Printing the process IDs obtained
+    debug:
+      var: pids
+
+  - name: Kill running processes forcibly
+    shell: "kill -9 {{ item }}"
+    loop: "{{ pids.pids }}"

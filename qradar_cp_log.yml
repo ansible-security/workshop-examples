@@ -1,0 +1,19 @@
+---
+- name: Add Check Point log source to QRadar
+  hosts: all
+  collections:
+    - ibm.qradar
+
+  tasks:
+    - name: Add Check Point remote logging to QRadar
+      qradar_log_source_management:
+        name: "Check Point source - {{ hostvars['checkpoint']['private_ip'] }}"
+        type_name: "Check Point FireWall-1"
+        state: present
+        description: "Check Point log source"
+        identifier: "{{ hostvars['checkpoint']['private_ip'] }}"
+
+    - name: deploy the new log sources
+      qradar_deploy:
+        type: INCREMENTAL
+      failed_when: false

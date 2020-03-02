@@ -1,0 +1,15 @@
+---
+- name: Configure snort for external logging
+  hosts: all
+  vars:
+    ids_provider: "snort"
+    ids_config_provider: "snort"
+    ids_config_remote_log: true
+    ids_config_remote_log_destination: "{{ hostvars['qradar']['private_ip'] }}"
+    ids_config_remote_log_procotol: udp
+    ids_install_normalize_logs: false
+
+  tasks:
+    - name: import ids_config role
+      include_role:
+        name: "ansible_security.ids_config"
