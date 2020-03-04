@@ -1,0 +1,3 @@
+- src: ansible_security.log_manager
+- src: ansible_security.ids_rule
+- src: ansible_security.ids_config
