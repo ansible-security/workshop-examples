@@ -18,7 +18,7 @@
       systemd:
         daemon_reload: yes
 
-    - name: system enable timer
+    - name: system start timer
       systemd:
         name: curl.timer
         state: started
