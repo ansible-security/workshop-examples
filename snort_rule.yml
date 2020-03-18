@@ -15,6 +15,6 @@
       include_role:
         name: "ansible_security.ids_rule"
       vars:
-        ids_rule: 'alert {{protocol}} {{source_ip}} {{source_port}} -> {{dest_ip}} {{dest_port}}  (msg:"Attempted DDoS Attack"; uricontent:"/ddos_simulation"; classtype:successful-dos; sid:99000010; priority:1; rev:1;)'
+        ids_rule: "{{ tower_snort_rule }}"
         ids_rules_file: '/etc/snort/rules/local.rules'
         ids_rule_state: present
