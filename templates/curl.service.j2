@@ -2,6 +2,4 @@
 Description=curl
 
 [Service]
-ExecStart=/bin/curl -m 2 -s http://{{ hostvars['snort']['private_ip2'] }}/ddos_simulation
-Restart=always
-RestartSec=5
+ExecStart=-/bin/curl -m 2 -s http://{{ hostvars['snort']['private_ip2'] }}/ddos_simulation
