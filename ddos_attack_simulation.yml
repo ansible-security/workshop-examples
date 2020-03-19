@@ -18,7 +18,12 @@
       systemd:
         daemon_reload: yes
 
-    - name: system start timer
+    - name: systemctl start curl timer
       systemd:
         name: curl.timer
+        state: started
+
+    - name: systemctl start curl service
+      systemd:
+        name: curl.service
         state: started
