@@ -3,7 +3,12 @@
   hosts: all
 
   tasks:
-    - name: system disable attack timer
+    - name: Disable attack timer
       systemd:
         name: curl.timer
+        state: stopped
+
+    - name: Stop attack service
+      systemd:
+        name: curl.service
         state: stopped
