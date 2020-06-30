@@ -1,0 +1,14 @@
+---
+- name: Kill simulated web attack
+  hosts: all
+
+  tasks:
+    - name: Disable webattack timer
+      systemd:
+        name: webattack.timer
+        state: stopped
+
+    - name: Stop webattack service
+      systemd:
+        name: webattack.service
+        state: stopped

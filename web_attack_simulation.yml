@@ -1,0 +1,29 @@
+---
+- name: Start web attack simulation
+  hosts: all
+  gather_facts: no
+
+  tasks:
+    - name: copy webattack systemd timer file
+      copy:
+        src: webattack.timer
+        dest: /etc/systemd/system/webattack.timer
+            
+    - name: copy webattack systemd service file
+      template:
+        src: webattack.service.j2
+        dest: /etc/systemd/system/webattack.service
+            
+    - name: systemd daemon-reload
+      systemd:
+        daemon_reload: yes
+
+    - name: systemctl start webattack timer
+      systemd:
+        name: webattack.timer
+        state: started
+
+    - name: systemctl start webattack service
+      systemd:
+        name: webattack.service
+        state: started

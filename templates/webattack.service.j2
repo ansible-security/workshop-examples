@@ -1,0 +1,5 @@
+[Unit]
+Description=webattack
+
+[Service]
+ExecStart=-/bin/curl -m 2 -s http://{{ hostvars['snort']['private_ip2'] }}/web_attack_simulation

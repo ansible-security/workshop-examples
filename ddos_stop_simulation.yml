@@ -1,14 +1,14 @@
 ---
-- name: Kill simulated attack
+- name: Kill simulated DDOS attack
   hosts: all
 
   tasks:
-    - name: Disable attack timer
+    - name: Disable ddosattack timer
       systemd:
-        name: curl.timer
+        name: ddosattack.timer
         state: stopped
 
-    - name: Stop attack service
+    - name: Stop ddosattack service
       systemd:
-        name: curl.service
+        name: ddosattack.service
         state: stopped

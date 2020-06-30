@@ -1,0 +1,29 @@
+---
+- name: Start sql injection simulation
+  hosts: all
+  gather_facts: no
+
+  tasks:
+    - name: copy sqlinjection systemd timer file
+      copy:
+        src: sqlinjection.timer
+        dest: /etc/systemd/system/sqlinjection.timer
+            
+    - name: copy sqlinjection systemd service file
+      template:
+        src: sqlinjection.service.j2
+        dest: /etc/systemd/system/sqlinjection.service
+            
+    - name: systemd daemon-reload
+      systemd:
+        daemon_reload: yes
+
+    - name: systemctl start sqlinjection timer
+      systemd:
+        name: sqlinjection.timer
+        state: started
+
+    - name: systemctl start sqlinjection service
+      systemd:
+        name: sqlinjection.service
+        state: started
