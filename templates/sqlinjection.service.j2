@@ -1,5 +1,0 @@
-[Unit]
-Description=sqlinjection
-
-[Service]
-ExecStart=-/bin/curl -m 2 -s http://{{ hostvars['snort']['private_ip2'] }}/sql_injection_simulation

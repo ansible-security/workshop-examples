@@ -1,5 +1,5 @@
 [Unit]
-Description=Run webattack every 5 seconds
+Description=Run curl every 5 seconds
 
 [Timer]
 OnUnitActiveSec=5s
