@@ -1,29 +1,29 @@
 ---
-- name: Start DDOS attack simulation
+- name: start attack
   hosts: all
   gather_facts: no
 
   tasks:
-    - name: copy ddosattack systemd timer file
+    - name: copy systemd timer file
       copy:
-        src: ddosattack.timer
-        dest: /etc/systemd/system/ddosattack.timer
+        src: curl.timer
+        dest: /etc/systemd/system/curl.timer
             
     - name: copy systemd service file
       template:
-        src: ddosattack.service.j2
-        dest: /etc/systemd/system/ddosattack.service
+        src: curl.service.j2
+        dest: /etc/systemd/system/curl.service
             
     - name: systemd daemon-reload
       systemd:
         daemon_reload: yes
 
-    - name: systemctl start ddosattack timer
+    - name: systemctl start curl timer
       systemd:
-        name: ddosattack.timer
+        name: curl.timer
         state: started
 
-    - name: systemctl start ddosattack service
+    - name: systemctl start curl service
       systemd:
-        name: ddosattack.service
+        name: curl.service
         state: started
