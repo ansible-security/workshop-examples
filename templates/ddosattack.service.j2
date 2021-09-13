@@ -1,5 +1,5 @@
 [Unit]
-Description=curl
+Description=ddosattack
 
 [Service]
 ExecStart=-/bin/curl -m 2 -s http://{{ hostvars['snort']['private_ip2'] }}/ddos_simulation
