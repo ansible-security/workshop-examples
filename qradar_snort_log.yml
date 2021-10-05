@@ -11,4 +11,4 @@
         type_name: "Snort Open Source IDS"
         state: present
         description: "Snort rsyslog source"
-        identifier: "{{ hostvars['snort']['private_ip']|regex_replace('\\.','-')|regex_replace('^(.*)$', 'ip-\\1') }}"
+        identifier: "{{ hostvars['snort']['ansible_fqdn'] }}" 
