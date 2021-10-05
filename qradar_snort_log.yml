@@ -12,3 +12,8 @@
         state: present
         description: "Snort rsyslog source"
         identifier: "{{ hostvars['snort']['ansible_fqdn'] }}" 
+
+    - name: deploy the new log sources
+      qradar_deploy:
+        type: INCREMENTAL
+      failed_when: false
