@@ -1,3 +1,4 @@
 ---
 collections:
   - name: ibm.qradar
+    src: https://github.com/ansible-collections/ibm.qradar
