@@ -1,3 +1,7 @@
-- src: ansible_security.log_manager
-- src: ansible_security.ids_rule
-- src: ansible_security.ids_config
+---
+- name: ansible_security.ids_config
+  src: https://github.com/ansible-security/ids_config
+- name: geerlingguy.repo-epel
+  src: https://github.com/geerlingguy/ansible-role-repo-epel
+- name: ansible_security.log_manager
+  src: https://github.com/ansible-security/log_manager
