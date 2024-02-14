@@ -75,11 +75,11 @@
   tasks:
     - name: Remove Check Point remote logging from QRadar
       qradar_log_source_management:
-        name: "Check Point source - {{ hostvars['checkpoint']['private_ip'] }}"
+        name: "Check Point source - {{ hostvars['checkpoint_mgmt']['private_ip'] }}"
         type_name: "Check Point NGFW"
         state: absent
         description: "Check Point log source"
-        identifier: "{{ hostvars['checkpoint']['private_ip'] }}"
+        identifier: "{{ hostvars['checkpoint_mgmt']['private_ip'] }}"
 
     - name: deploy the log source changes
       qradar_deploy:
