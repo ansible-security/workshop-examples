@@ -11,7 +11,7 @@
         type_name: "Check Point FireWall-1"
         state: present
         description: "Check Point log source"
-        identifier: "{{ hostvars['checkpoint']['private_ip'] }}"
+        identifier: "{{ hostvars['checkpoint_mgmt']['private_ip'] }}"
 
     - name: deploy the new log sources
       qradar_deploy:
