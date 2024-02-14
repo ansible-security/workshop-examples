@@ -7,7 +7,7 @@
   tasks:
     - name: Add Check Point remote logging to QRadar
       qradar_log_source_management:
-        name: "Check Point source - {{ hostvars['checkpoint']['private_ip'] }}"
+        name: "Check Point source - {{ hostvars['checkpoint_mgmt']['private_ip'] }}"
         type_name: "Check Point FireWall-1"
         state: present
         description: "Check Point log source"
